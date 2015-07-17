@@ -8,8 +8,7 @@
  *
  * Main module of the application.
  */
-var app = angular
-  .module('cedarTechWebApp', [
+angular.module('cedarTechWebApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -18,9 +17,7 @@ var app = angular
     'ngTouch',
     'ui.bootstrap',
     'angular-loading-bar'
-  ]);
-
-  app.config(function ($routeProvider) {
+  ]).config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
