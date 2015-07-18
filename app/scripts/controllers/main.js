@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the cedarTechWebApp
  */
-app.controller('MainCtrl', ['$scope', function ($scope) {
+angular.module('cedarTechWebApp').controller('MainCtrl', ['$scope', function ($scope) {
 
     this.awesomeThings = [
       'HTML5 Boilerplate',

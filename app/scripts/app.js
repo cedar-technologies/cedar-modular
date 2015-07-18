@@ -15,21 +15,28 @@ angular.module('cedarTechWebApp', [
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ui.router',
     'ui.bootstrap',
     'angular-loading-bar'
-  ]).config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
+  ]).config(function ($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise("/");
+
+
+    $stateProvider
+    .state('home', {
+      url: "/",
+      views: {
+        "mainView": {
+          template: 'views/main.html',
+          controller: 'MainCtrl'
+        },
+      }
+    })
+    .state('about', {
+      url: "/about",
+      templateUrl: 'views/about.html',
+      controller: 'AboutCtrl',
+    });
+
   });
