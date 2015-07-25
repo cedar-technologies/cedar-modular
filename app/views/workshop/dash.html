@@ -1,0 +1,43 @@
+<div class="row">
+ <div class="col-md-12">
+   <h2 class="page-header">Cedar Workshop - Dashboard</h2>
+ </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2">
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="type in buildingTypes">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="type.visible">{{type.name}}
+          </label>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-10">
+    <ui-gmap-google-map
+      center="map.center"
+      zoom="map.zoom"
+      pan="true"
+      draggable="true"
+      options="options"
+      bounds="map.bounds"
+      events="map.events">
+        <ui-gmap-markers
+          models="buildings"
+          coords="'geometry'"
+          icon="'icon'"
+          doCluster="true"
+          clusterOptions="map.clusterOptions"
+          events="buildingMarkers.events">
+        </ui-gmap-markers>
+    </ui-gmap-google-map>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-header">{{model.name}} {{model.type}}</h3>
+  </div>
+</div>
