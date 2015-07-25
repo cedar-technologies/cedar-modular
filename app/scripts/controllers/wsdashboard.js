@@ -37,7 +37,7 @@ angular.module('cedarTechWebApp')
           events: {
             idle : function(){
               $timeout(function(){
-                $scope.getBuildings = buildingService.getBuildingForMap($scope.map.bounds);
+                $scope.getBuildings = buildingService.getBuidingForDash($scope.map.bounds, $scope.buildingTypes);
                 $scope.getBuildings.$promise.then(function(result){
                   $scope.buildings = result.features;
                 });

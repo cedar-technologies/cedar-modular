@@ -45,8 +45,8 @@ angular.module('cedarTechWebApp', [
         }
       }
     })
-    .state('workshop.wsdashboard', {
-      url: "/wsdashboard",
+    .state('workshop.dash', {
+      url: "/dash",
       views: {
         "workshopView@workshop": {
           templateUrl: 'views/workshop/dash.html',
@@ -55,11 +55,10 @@ angular.module('cedarTechWebApp', [
       }
     })
     .state('workshop.tree', {
-    .state('tree', {
       url: "/tree",
       views: {
-        "mainView": {
-          templateUrl: 'views/tree.html',
+        "workshopView@workshop": {
+          templateUrl: 'views/workshop/tree.html',
           controller: 'TreeCtrl'
         },
       }
@@ -73,9 +72,22 @@ angular.module('cedarTechWebApp', [
         state: 'home',
         iconClass: 'fa-home'
     })
-    .menuItem('cedar.tree', {
+    .menuItem('cedar.workshop', {
+        text: 'Workshop',
+        state: 'workshop',
+        iconClass: 'fa-gear'
+    });
+
+
+    eehNavigationProvider
+    .menuItem('workshop.dashboard', {
+        text: 'Deashboard',
+        state: 'workshop.dash',
+        iconClass: 'fa-home'
+    })
+    .menuItem('workshop.tree', {
         text: 'Trees',
-        state: 'tree',
+        state: 'workshop.tree',
         iconClass: 'fa-tree'
     });
 

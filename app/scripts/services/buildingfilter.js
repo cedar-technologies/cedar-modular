@@ -14,10 +14,16 @@ angular.module('cedarTechWebApp')
 
     var _buildingTypeFilter = function (buildingTypes){
 
+      var types = [];
+
+      angular.forEach(buildingTypes, function(building, index){
+        types.push(building.name);
+      })
+
       return {
               'buildingTypes':
               {
-                $in: buildingTypes
+                $in: types
               }
             }
     }
@@ -36,9 +42,7 @@ angular.module('cedarTechWebApp')
     }
 
     var _customDashFilter = function(bounds, buildingTypes){
-
       return angular.extend({}, _googleMapBoundFilter(bounds), _buildingTypeFilter(buildingTypes));
-
     }
 
 

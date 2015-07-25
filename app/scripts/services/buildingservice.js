@@ -25,7 +25,7 @@ angular.module('cedarTechWebApp')
     }
 
     var _getBuildingForMap = function(bounds){
-        var filter =   buildingFilter.googleMapBoundFilter(bounds)));
+        var filter =   buildingFilter.googleMapBoundFilter(bounds);
         return _query(filter);
     }
 
