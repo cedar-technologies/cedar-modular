@@ -8,7 +8,7 @@
  * Factory in the cedarTechWebApp.
  */
 angular.module('cedarTechWebApp')
-  .factory('buildingService', ['workshopapi','buildingFilter',function (workshopapi,buildingFilter) {
+  .factory('buildingService', ['workshopapi','buildingFilter', function(workshopapi,buildingFilter) {
 
 
     var buildingServiceFactory = {};
@@ -19,12 +19,24 @@ angular.module('cedarTechWebApp')
       return buildingResource.get();
     }
 
+    var _query = function(filter){
+      var URIencodedFilter = encodeURIComponent(JSON.stringify(filter));
+      return buildingResource.queryGeoJson({query: URIencodedFilter});
+    }
+
     var _getBuildingForMap = function(bounds){
-        var filter =   encodeURIComponent(JSON.stringify(buildingFilter.googleMapBoundFilter(bounds)));
-        return buildingResource.queryGeoJson({query: filter});
+        var filter =   buildingFilter.googleMapBoundFilter(bounds)));
+        return _query(filter);
+    }
+
+    var _getBuidingForDash = function(bounds, buildingTypes){
+      var filter = buildingFilter.customDashFilter(bounds, buildingTypes);
+      return _query(filter);
     }
 
     buildingServiceFactory.getBuildingForMap = _getBuildingForMap;
+    buildingServiceFactory.getBuidingForDash = _getBuidingForDash;
+    buildingServiceFactory.query = _query;
     buildingServiceFactory.get = _get;
 
 

@@ -8,56 +8,62 @@
  * Controller of the cedarTechWebApp
  */
 angular.module('cedarTechWebApp')
-  .controller('WsdashboardCtrl',['$scope','$timeout','buildingService','buildingTypeService', function ($scope,$timeout, buildingService, buildingTypeService) {
+  .controller('WsdashboardCtrl',
+    [
+      '$scope',
+      '$timeout',
+      'buildingService',
+      'buildingTypeService',
+      function (
+        $scope,
+        $timeout,
+        buildingService,
+        buildingTypeService) {
 
-    $scope.buildings;
+      $scope.buildings;
 
-    $scope.buildingTypes = buildingTypeService.get();
+      $scope.buildingTypes = buildingTypeService.get();
 
-    //$scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
-    angular.extend($scope, {
-      map: {
-        center: {
-          latitude: 51.142207,
-          longitude: -114.232893
-        },
-        zoom: 8,
-        bounds: {},
-        doClusterRandomMarkers: true,
+      //$scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+      angular.extend($scope, {
+        map: {
+          center: {
+            latitude: 51.142207,
+            longitude: -114.232893
+          },
+          zoom: 8,
+          bounds: {},
+          doClusterRandomMarkers: true,
+          events: {
+            idle : function(){
+              $timeout(function(){
+                $scope.getBuildings = buildingService.getBuildingForMap($scope.map.bounds);
+                $scope.getBuildings.$promise.then(function(result){
+                  $scope.buildings = result.features;
+                });
+                $scope.$apply();
+              });
+            }
+          }
+        }
+      });
+
+      $scope.buildingMarkers = {
         clusterOptions: {
-          title: 'Hi I am a Cluster!',
-          gridSize: 60,
+          title: 'Click to zoom on buildings',
+          gridSize: 40,
           ignoreHidden: true,
           minimumClusterSize: 2},
-        events: {
-          idle : function(){
-            $timeout(function(){
-              $scope.getBuildings = buildingService.getBuildingForMap($scope.map.bounds);
-              $scope.getBuildings.$promise.then(function(result){
-                $scope.buildings = result.features;
-              });
-              $scope.$apply();
-            });
+        events:{
+          click: function(marker, eventName, model, originalEventArgs){
+            $scope.model = model.properties;
           }
         }
       }
-    });
-
-    $scope.buildingMarkers = {
-      events:{
-        click: function(marker, eventName, model, originalEventArgs){
-          $scope.model = model.properties;
-        }
-      }
-    }
 
 
-    $scope.options = {
-      scrollwheel: false
-    };
-
-    $scope.test = 'test';
-
-
+      $scope.options = {
+        scrollwheel: false
+      };
 
   }]);

@@ -55,10 +55,11 @@ angular.module('cedarTechWebApp', [
       }
     })
     .state('workshop.tree', {
+    .state('tree', {
       url: "/tree",
       views: {
-        "workshopView@workshop": {
-          templateUrl: 'views/workshop/tree.html',
+        "mainView": {
+          templateUrl: 'views/tree.html',
           controller: 'TreeCtrl'
         },
       }
@@ -72,29 +73,10 @@ angular.module('cedarTechWebApp', [
         state: 'home',
         iconClass: 'fa-home'
     })
-    .menuItem('cedar.workshop', {
-        text: 'Workshop',
-        state: 'workshop',
-        iconClass: 'fa-cogs'
-    });
-
-    eehNavigationProvider
-    .menuItem('workshop.dashboard', {
-      text: 'Dashboard',
-      state: 'workshop.wsdashboard',
-      iconClass: 'fa-bar-chart'
-    })
-    .menuItem('workshop.trees', {
+    .menuItem('cedar.tree', {
         text: 'Trees',
-        state: 'workshop.tree',
+        state: 'tree',
         iconClass: 'fa-tree'
-    });
-
-
-    uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyAEB5f2pkmSI2UPsW3iK5c070orXP5JctM',
-        v: '3.20',
-        libraries: 'drawing,geometry,visualization'
     });
 
 
