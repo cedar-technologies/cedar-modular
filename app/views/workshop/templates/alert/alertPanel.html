@@ -1,0 +1,17 @@
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <i class="fa fa-exclamation-triangle fa-fw"></i><span> Alerts panel</span>
+  </div>
+  <div class="panel-body">
+    <div class="list-group">
+      <a href="#" class="list-group-item" ng-repeat="alert in alerts">
+        <i class="fa fa-fw" ng-class="alert.icon"></i>
+        <span> {{alert.text}}</span>
+        <span class="pull-right text-muted small">
+          <em>{{alert.when | date:'MM/dd/yyyy @ h:mma'}}</em>
+        </span>
+      </a>
+    </div>
+  </div>
+</div>

@@ -21,7 +21,7 @@ angular.module('cedarTechWebApp')
 
     var _query = function(filter){
       var URIencodedFilter = encodeURIComponent(JSON.stringify(filter));
-      return buildingResource.queryGeoJson({query: URIencodedFilter});
+      return buildingResource.geoJson({filter: URIencodedFilter});
     }
 
     var _getBuildingForMap = function(bounds){

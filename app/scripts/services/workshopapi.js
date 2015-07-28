@@ -39,13 +39,8 @@ angular.module('cedarTechWebApp')
       },
       'geoJson': {
         method: 'GET',
-        url: buildingRoute + '/geoJson'
-      },
-      'queryGeoJson':{
-        method: 'GET',
-        url: buildingRoute + '/geoJson/:query'
+        url: buildingRoute + '/geoJson/data'
       }
-
     };
 
     var _buildingRessource = $resource(buildingRoute,null,buildingActions);
@@ -93,6 +88,10 @@ angular.module('cedarTechWebApp')
         method:'GET',
         url: serviceBase + '/:id'
       },
+      'query':{
+        method:'GET',
+        isArray: true
+      },
       'save':   {
         method:'POST'
       },
@@ -109,6 +108,39 @@ angular.module('cedarTechWebApp')
     var _buildingTypeResource = $resource(buildingTypeRoute,null,buildingTypeActions);
 
     workshopApiFactory.buildingTypeResource = _buildingTypeResource;
+
+    //alert resource
+    var alertRoute = serviceBase + 'alerts';
+
+    var alertActions = {
+      'get':    {
+        method:'GET',
+        isArray: true
+      },
+      'findOne': {
+        method:'GET',
+        url: serviceBase + '/:id'
+      },
+      'query':{
+        method:'GET',
+        isArray: true
+      },
+      'save':   {
+        method:'POST'
+      },
+      'update':  {
+        method:'PUT',
+        url: serviceBase + '/:id'
+      },
+      'delete': {
+        method:'DELETE',
+        url: serviceBase + '/:id'
+      }
+    };
+
+    var _alertResource = $resource(alertRoute,null,alertActions);
+
+    workshopApiFactory.alertResource = _alertResource;
 
     // Public API here
     return workshopApiFactory;

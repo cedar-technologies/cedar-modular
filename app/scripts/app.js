@@ -21,7 +21,12 @@ angular.module('cedarTechWebApp', [
     'eehNavigation',
     'pascalprecht.translate',
     'uiGmapgoogle-maps'
-  ]).config(function ($stateProvider, $urlRouterProvider, eehNavigationProvider, uiGmapGoogleMapApiProvider) {
+  ]).config(function (
+    $stateProvider,
+    $urlRouterProvider,
+    eehNavigationProvider,
+    uiGmapGoogleMapApiProvider,
+    cfpLoadingBarProvider) {
 
     $urlRouterProvider.otherwise("/");
 
@@ -62,8 +67,16 @@ angular.module('cedarTechWebApp', [
           controller: 'TreeCtrl'
         },
       }
+    }).state('contact', {
+      url: "/contact",
+      views: {
+        "mainView": {
+          templateUrl: 'views/contact/contact.html',
+          controller: 'ContactCtrl'
+        },
+      }
     });
-
+    
     eehNavigationProvider.iconBaseClass('fa');
 
     eehNavigationProvider
@@ -76,14 +89,19 @@ angular.module('cedarTechWebApp', [
         text: 'Workshop',
         state: 'workshop',
         iconClass: 'fa-gear'
+    })
+    .menuItem('cedar.contact', {
+        text: 'Contact',
+        state: 'contact',
+        iconClass: 'fa-gear'
     });
 
 
     eehNavigationProvider
     .menuItem('workshop.dashboard', {
-        text: 'Deashboard',
+        text: 'Dashboard',
         state: 'workshop.dash',
-        iconClass: 'fa-home'
+        iconClass: 'fa-dashboard'
     })
     .menuItem('workshop.tree', {
         text: 'Trees',
@@ -91,6 +109,7 @@ angular.module('cedarTechWebApp', [
         iconClass: 'fa-tree'
     });
 
+    cfpLoadingBarProvider.includeSpinner = false;
 
   }).constant('myConfig',{
     'backend': 'http://ec2-52-25-100-45.us-west-2.compute.amazonaws.com:8080/api/'

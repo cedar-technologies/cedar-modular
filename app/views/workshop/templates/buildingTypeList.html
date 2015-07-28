@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <i class="fa fa-building-o fa-fw"></i><span> Building type selection</span>
+  </div>
+  <div class="panel-body">
+    <ul class="list-unstyled">
+      <li class="list-item" ng-repeat="type in buildingtypes">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="type.visible" ng-click="onclick()">{{type.name}}
+          </label>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

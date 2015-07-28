@@ -22,7 +22,7 @@ angular.module('cedarTechWebApp')
 
       $scope.buildings;
 
-      $scope.buildingTypes = buildingTypeService.get();
+      $scope.buildingTypes = buildingTypeService.getActive();
 
       //$scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
       angular.extend($scope, {
@@ -35,7 +35,7 @@ angular.module('cedarTechWebApp')
           bounds: {},
           doClusterRandomMarkers: true,
           events: {
-            idle : function(){
+            idle : function(map, eventName, originalEventArgs){
               $timeout(function(){
                 $scope.getBuildings = buildingService.getBuidingForDash($scope.map.bounds, $scope.buildingTypes);
                 $scope.getBuildings.$promise.then(function(result){
@@ -65,5 +65,12 @@ angular.module('cedarTechWebApp')
       $scope.options = {
         scrollwheel: false
       };
+
+      $scope.buildingTypeVisibilityChange = function(){
+        $scope.getBuildings = buildingService.getBuidingForDash($scope.map.bounds, $scope.buildingTypes);
+        $scope.getBuildings.$promise.then(function(result){
+          $scope.buildings = result.features;
+        });
+      }
 
   }]);

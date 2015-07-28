@@ -12,37 +12,70 @@ angular.module('cedarTechWebApp')
 
     var buildingFilterFactory = {};
 
-    var _buildingTypeFilter = function (buildingTypes){
+    var _buildingTypeFilter = function (buildingTypes, onlyVisible){
 
       var types = [];
 
-      angular.forEach(buildingTypes, function(building, index){
-        types.push(building.name);
-      })
+      if(onlyVisible){
+        angular.forEach(buildingTypes, function(building, index){
+          if(building.visible){
+            types.push(building.name);
+          }
+        })
+      } else {
+        angular.forEach(buildingTypes, function(building, index){
+          types.push(building.name);
+        })
+      }
 
       return {
-              'buildingTypes':
+              'buildingType':
               {
                 $in: types
               }
-            }
+            };
     }
 
     var _googleMapBoundFilter = function(bounds){
-      return {
-                "lat": {
-                  "$gt": bounds.southwest.latitude,
-                  "$lt": bounds.northeast.latitude
-                },
-                "lng": {
-                  "$gt": bounds.southwest.longitude,
-                  "$lt": bounds.northeast.longitude
-                }
-              };
+
+      if(bounds.southwest.longitude < bounds.northeast.longitude){
+        return {
+                  "lat": {
+                    "$gt": bounds.southwest.latitude,
+                    "$lt": bounds.northeast.latitude
+                  },
+                  "lng": {
+                    "$gt": bounds.southwest.longitude,
+                    "$lt": bounds.northeast.longitude
+                  }
+                };
+      } else {
+        return {
+                  "lat": {
+                    "$gt": bounds.southwest.latitude,
+                    "$lt": bounds.northeast.latitude
+                  },
+                  $or:
+                    [
+                      {
+                        "lng": {
+                          "$gt": -180,
+                          "$lt": bounds.northeast.longitude
+                        }
+                      },
+                      {
+                        "lng": {
+                          "$gt": bounds.southwest.longitude,
+                          "$lt": 180
+                        }
+                      }
+                    ]
+                };
+        }
     }
 
     var _customDashFilter = function(bounds, buildingTypes){
-      return angular.extend({}, _googleMapBoundFilter(bounds), _buildingTypeFilter(buildingTypes));
+      return angular.extend({}, _googleMapBoundFilter(bounds), _buildingTypeFilter(buildingTypes, true));
     }
 
 

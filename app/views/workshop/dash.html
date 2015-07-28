@@ -3,41 +3,44 @@
    <h2 class="page-header">Cedar Workshop - Dashboard</h2>
  </div>
 </div>
-
 <div class="row">
-  <div class="col-md-2">
-    <ul class="list-group">
-      <li class="list-group-item" ng-repeat="type in buildingTypes">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" ng-model="type.visible">{{type.name}}
-          </label>
-        </div>
-      </li>
-    </ul>
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <i class="fa fa-globe fa-fw"></i><span> Cedar Workshop map</span>
+      </div>
+      <div class="panel-body">
+        <ui-gmap-google-map
+          center="map.center"
+          zoom="map.zoom"
+          pan="true"
+          draggable="true"
+          options="options"
+          bounds="map.bounds"
+          events="map.events">
+            <ui-gmap-markers
+              models="buildings"
+              coords="'geometry'"
+              icon="'icon'"
+              doCluster="true"
+              clusterOptions="buildingMarkers.clusterOptions"
+              events="buildingMarkers.events">
+            </ui-gmap-markers>
+        </ui-gmap-google-map>
+      </div>
+    </div>
   </div>
-  <div class="col-md-10">
-    <ui-gmap-google-map
-      center="map.center"
-      zoom="map.zoom"
-      pan="true"
-      draggable="true"
-      options="options"
-      bounds="map.bounds"
-      events="map.events">
-        <ui-gmap-markers
-          models="buildings"
-          coords="'geometry'"
-          icon="'icon'"
-          doCluster="true"
-          clusterOptions="buildingMarkers.clusterOptions"
-          events="buildingMarkers.events">
-        </ui-gmap-markers>
-    </ui-gmap-google-map>
+  <div class="col-md-4">
+    <cd-building-type-list buildingTypes="buildingTypes" onclick="buildingTypeVisibilityChange"></cd-building-type-list>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
-    <h3 class="page-header">{{model.name}} {{model.type}}</h3>
+<div id="modelWrapper" ng-show="model != null">
+  <div class="row">
+    <div class="col-md-8">
+      <cd-building-details building="model" ></cd-building-details>
+    </div>
+    <div class="col-md-4">
+      <cd-alert-panel objectid="model._id"></cd-alert-panel>
+    </div>
   </div>
 </div>
