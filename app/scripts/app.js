@@ -37,7 +37,7 @@ angular.module('cedarTechWebApp', [
       views: {
         "mainView": {
           templateUrl: 'views/main.html',
-          controller: 'MainCtrl'
+          controller: 'HomeCtrl'
         },
       }
     })
@@ -54,8 +54,8 @@ angular.module('cedarTechWebApp', [
       url: "/dash",
       views: {
         "workshopView@workshop": {
-          templateUrl: 'views/workshop/dash.html',
-          controller: 'WsdashboardCtrl'
+          templateUrl: 'views/workshop/dashboard.html',
+          controller: 'DashboardCtrl'
         },
       }
     })
@@ -76,7 +76,7 @@ angular.module('cedarTechWebApp', [
         },
       }
     });
-    
+
     eehNavigationProvider.iconBaseClass('fa');
 
     eehNavigationProvider

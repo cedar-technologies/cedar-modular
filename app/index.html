@@ -16,6 +16,7 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/cdstyle.css">
     <!-- endbuild -->
   </head>
   <body ng-app="cedarTechWebApp">
@@ -31,7 +32,7 @@
           brand-text="navbarBrand.text"
           brand-state="navbarBrand.state"
           menu-name="'cedar'"
-          nav-class="'navbar navbar-default navbar-static-top'"
+          nav-class="'navbar navbar-inverse navbar-static-top'"
           ></eeh-navigation-navbar>
       </div>
 
@@ -81,14 +82,23 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/workshop.js"></script>
+        <script src="scripts/main/controllers/index.js"></script>
+        <script src="scripts/home/controllers/home.js"></script>
+
+        <script src="scripts/workshop/controllers/tree.js"></script>
+        <script src="scripts/workshop/controllers/dashboard.js"></script>
+        <script src="scripts/workshop/controllers/workshop.js"></script>
+
+
+        <script src="scripts/workshop/services/api/workshopapi.js"></script>
+
+
         <script src="scripts/services/treeservice.js"></script>
-        <script src="scripts/controllers/tree.js"></script>
-        <script src="scripts/controllers/index.js"></script>
+
+
         <script src="scripts/controllers/wsdashboard.js"></script>
         <script src="scripts/services/buildingservice.js"></script>
-        <script src="scripts/services/workshopapi.js"></script>
+
         <script src="scripts/services/buildingfilter.js"></script>
         <script src="scripts/services/buildingtypeservice.js"></script>
         <script src="scripts/services/buildingtypefilter.js"></script>

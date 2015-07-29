@@ -52,6 +52,10 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/styles/**/*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
+      less: {
+    		files: ['<%= yeoman.app %>/styles/less/**/*.less'],
+    		tasks: ['less']
+    	},
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -405,7 +409,17 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    // compile less files to style.css
+    less: {
+    	server: {
+    		files: {
+    			"<%= yeoman.app %>/styles/cdstyle.css": "<%= yeoman.app %>/styles/less/{,*/}*.less"
+    		}
+    	}
     }
+
   });
 
 
@@ -416,6 +430,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'less',
       'wiredep',
       'concurrent:server',
       'autoprefixer:server',
@@ -431,6 +446,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'less',
     'wiredep',
     'concurrent:test',
     'autoprefixer',
@@ -440,6 +456,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'less',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
