@@ -8,7 +8,7 @@
  * Controller of the cedarTechWebApp
  */
 angular.module('cedarTechWebApp')
-  .controller('WorkshopCtrl', ['$scope',  function ($scope) {
+  .controller('WorkshopLayoutCtrl', ['$scope',  function ($scope) {
 
     $scope.sidebarmenu = {
       name: 'workshop',

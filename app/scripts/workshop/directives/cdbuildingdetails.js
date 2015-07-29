@@ -9,7 +9,7 @@
 angular.module('cedarTechWebApp')
   .directive('cdBuildingDetails', function () {
     return {
-      templateUrl: 'views/workshop/templates/building.html',
+      templateUrl: 'views/workshop/templates/building/buildingDetail.html',
       restrict: 'E',
       scope: {
         building: '=building'
