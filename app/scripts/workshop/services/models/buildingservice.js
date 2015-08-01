@@ -29,13 +29,13 @@ angular.module('cedarTechWebApp')
         return _query(filter);
     }
 
-    var _getBuidingForDash = function(bounds, buildingTypes){
+    var _getBuildingForDash = function(bounds, buildingTypes){
       var filter = buildingFilter.customDashFilter(bounds, buildingTypes);
       return _query(filter);
     }
 
     buildingServiceFactory.getBuildingForMap = _getBuildingForMap;
-    buildingServiceFactory.getBuidingForDash = _getBuidingForDash;
+    buildingServiceFactory.getBuildingForDash = _getBuidingForDash;
     buildingServiceFactory.query = _query;
     buildingServiceFactory.get = _get;
 

@@ -37,7 +37,7 @@ angular.module('cedarTechWebApp')
           events: {
             idle : function(map, eventName, originalEventArgs){
               $timeout(function(){
-                $scope.getBuildings = buildingService.getBuidingForDash($scope.map.bounds, $scope.buildingTypes);
+                $scope.getBuildings = buildingService.getBuildingForDash($scope.map.bounds, $scope.buildingTypes);
                 $scope.getBuildings.$promise.then(function(result){
                   $scope.buildings = result.features;
                 });
@@ -67,7 +67,7 @@ angular.module('cedarTechWebApp')
       };
 
       $scope.buildingTypeVisibilityChange = function(){
-        $scope.getBuildings = buildingService.getBuidingForDash($scope.map.bounds, $scope.buildingTypes);
+        $scope.getBuildings = buildingService.getBuildingForDash($scope.map.bounds, $scope.buildingTypes);
         $scope.getBuildings.$promise.then(function(result){
           $scope.buildings = result.features;
         });
