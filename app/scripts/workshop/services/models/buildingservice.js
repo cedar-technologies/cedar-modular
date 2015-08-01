@@ -35,7 +35,7 @@ angular.module('cedarTechWebApp')
     }
 
     buildingServiceFactory.getBuildingForMap = _getBuildingForMap;
-    buildingServiceFactory.getBuildingForDash = _getBuidingForDash;
+    buildingServiceFactory.getBuildingForDash = _getBuildingForDash;
     buildingServiceFactory.query = _query;
     buildingServiceFactory.get = _get;
 
