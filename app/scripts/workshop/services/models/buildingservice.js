@@ -30,7 +30,7 @@ angular.module('cedarTechWebApp')
     }
 
     var _getBuildingForDash = function(bounds, buildingTypes){
-      var filter = buildingFilter.customDashFilter(bounds, buildingTypes);
+      var filter = angular.extend({}, buildingFilter.googleMapBoundFilter(bounds),buildingFilter.buildingTypeFilter(buildingTypes, true));
       return _query(filter);
     }
 

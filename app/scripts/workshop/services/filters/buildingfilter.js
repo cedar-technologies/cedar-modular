@@ -29,9 +29,9 @@ angular.module('cedarTechWebApp')
       }
 
       return {
-              'buildingType':
+              "buildingType":
               {
-                $in: types
+                "$in": types
               }
             };
     }
@@ -55,7 +55,7 @@ angular.module('cedarTechWebApp')
                     "$gt": bounds.southwest.latitude,
                     "$lt": bounds.northeast.latitude
                   },
-                  $or:
+                  "$or":
                     [
                       {
                         "lng": {
@@ -74,14 +74,10 @@ angular.module('cedarTechWebApp')
         }
     }
 
-    var _customDashFilter = function(bounds, buildingTypes){
-      return angular.extend({}, _googleMapBoundFilter(bounds), _buildingTypeFilter(buildingTypes, true));
-    }
 
 
     buildingFilterFactory.googleMapBoundFilter = _googleMapBoundFilter;
     buildingFilterFactory.buildingTypeFilter = _buildingTypeFilter;
-    buildingFilterFactory.customDashFilter = _customDashFilter;
 
     // Public API here
     return buildingFilterFactory;
