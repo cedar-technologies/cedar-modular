@@ -378,6 +378,11 @@ module.exports = function (grunt) {
           cwd: 'bower_components/bootstrap/dist',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
+          cwd: 'bower_components/components-font-awesome',
+          src: 'fonts/*',
+          dest: '<%= yeoman.dist %>'
         }]
       },
       styles: {
@@ -415,9 +420,18 @@ module.exports = function (grunt) {
     less: {
     	server: {
     		files: {
-    			"<%= yeoman.app %>/styles/cdstyle.css": "<%= yeoman.app %>/styles/less/{,*/}*.less"
+    			"<%= yeoman.app %>/styles/cdstyle.css": "<%= yeoman.app %>/styles/less/*.less"
     		}
     	}
+    },
+
+    cssUrlEmbed:{
+      encode: {
+        expand: true,
+        cwd: '<%= yeoman.app %>/styles',
+        src: [ '**/*.css' ],
+        dest: '<%= yeoman.app %>/styles'
+      }
     }
 
   });
@@ -431,6 +445,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'less',
+      'cssUrlEmbed:encode',
       'wiredep',
       'concurrent:server',
       'autoprefixer:server',
@@ -447,6 +462,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'less',
+    'cssUrlEmbed:encode',
     'wiredep',
     'concurrent:test',
     'autoprefixer',
@@ -457,6 +473,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'less',
+    'cssUrlEmbed:encode',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',

@@ -18,7 +18,6 @@ describe('factory:buildingTypeFilter', function(){
     };
     var filter = buildingTypeFilter.activeBuildingType();
     expect(filter).toEqual(expectedFilter);
-
   });
 
 });
