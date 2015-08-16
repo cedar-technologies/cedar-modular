@@ -20,7 +20,8 @@ angular.module('cedarTechWebApp', [
     'angular-loading-bar',
     'eehNavigation',
     'pascalprecht.translate',
-    'uiGmapgoogle-maps'
+    'uiGmapgoogle-maps',
+    'qmfx.module'
   ]).config(function (
     $stateProvider,
     $urlRouterProvider,
