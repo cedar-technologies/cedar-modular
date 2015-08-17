@@ -2,18 +2,16 @@
     'use strict';
 
     angular
-        .module('qmfx.module')
-        .directive('prSelector', prSelector);
+        .module('app.widget')
+        .directive('cdFilterControl', cdFilterControl);
 
-    function prSelector() {
+    function cdFilterControl() {
         var directive = {
             restrict: 'E',
+            templateUrl: 'views/widgets/cd-filter-control.html',
             scope: {
-              'selectorConfig': '=',
-              'save': '&onSave',
-              'execute': '&onExecute'
+              'control': '='
             },
-            templateUrl: 'views/qmfx/prSelector.html',
             link: linkFunc,
             controller: Controller,
             controllerAs: 'vm'
@@ -22,19 +20,21 @@
         return directive;
 
         function linkFunc(scope, el, attr, ctrl) {
+
         }
     }
 
-    Controller.$inject = [];
+    Controller.$inject = ['$scope'];
 
-    function Controller() {
+    function Controller($scope) {
         var vm = this;
+
+        vm.name = '';
 
         activate();
 
         function activate() {
-
+          vm.name = $scope.control.title + 'control'
         }
-
     }
 })();

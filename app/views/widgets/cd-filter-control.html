@@ -1,0 +1,14 @@
+
+
+<div class="form-group">
+
+  <label for="{{vm.name}}" class="col-sm-6 control-label">{{control.title}}</label>
+
+
+  <div ng-switch="control.type" class="col-sm-6">
+    <!-- if controls is slider -->
+    <cd-filter-control-slider ng-switch-when="slider" options="control.options"></cd-filter-control-slider>
+
+  </div>
+
+</div>

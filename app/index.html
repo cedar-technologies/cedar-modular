@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
     <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/eeh-navigation/dist/eeh-navigation.css" />
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -76,11 +77,21 @@
     <script src="bower_components/lodash/lodash.js"></script>
     <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
     <script src="bower_components/angular-esri-map/dist/angular-esri-map.js"></script>
+    <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
+    <script src="bower_components/angular-ui-slider/src/slider.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+
+        <script src="scripts/core/core.module.js"></script>
+
+        <script src="scripts/widgets/widget.module.js"></script>
+        <script src="scripts/widgets/cd-filter-panel/cd-filter-panel.directive.js"></script>
+        <script src="scripts/widgets/cd-filter-control/cd-filter-control.directive.js"></script>
+        <script src="scripts/widgets/cd-filter-control-slider/cd-filter-control-slider.directive.js"></script>
+
         <script src="scripts/main/controllers/index.js"></script>
         <script src="scripts/home/controllers/home.js"></script>
 
@@ -107,7 +118,6 @@
         <script src="scripts/contact/directives/cdcontactform.js"></script>
 
         <script src="scripts/qmfx/qmfx.module.js"></script>
-        <script src="scripts/qmfx/qmfx.prSelector.directive.js"></script>
 
         <!-- endbuild -->
 </body>

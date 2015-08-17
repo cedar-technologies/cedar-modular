@@ -4,17 +4,19 @@
 
     <tabset>
       <tab ng-repeat="cat in selectorConfig.categories" heading="{{cat.title}}" active="cat.active">
-        {{cat.title}}
+        <div class="form-horizontal">
+          <cd-filter-control ng-repeat="control in cat.controls" control="control"></cd-filter-control>
+        </div>
       </tab>
     </tabset>
   </div>
   <div class="row">
 
-    <button type="button" class="btn btn-info" ng-click="save()">
+    <button type="button" class="btn btn-info" ng-click="events.save()">
     <i class="fa fa-floppy-o fa-lg"></i>
     Save</button>
 
-    <button type="button" class="btn btn-success" ng-click="execute()">
+    <button type="button" class="btn btn-success" ng-click="events.execute()">
       <i class="fa fa-play-circle-o fa-lg"></i>
       Run</button>
 

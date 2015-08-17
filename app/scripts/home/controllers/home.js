@@ -19,18 +19,56 @@ angular.module('cedarTechWebApp').controller('HomeCtrl', ['$scope', function ($s
       {
         title: 'firstTab',
         ative: true,
-        filters: [
+        controls: [
           {
-            title: 'wate'
+              title: 'wate',
+              type: 'slider',
+              options: {
+                min: 0,
+                max: 5,
+                range: 'min'
+              }
+          },
+          {
+              title: 'second control',
+              type: 'slider',
+              options: {
+                min: 0,
+                max: 5,
+                range: 'min'
+              }
           }
         ]
       },
       {
         title: 'secondTab',
         active: false,
-        filter: []
+        controls: [
+          {
+              title: 'third control',
+              type: 'slider',
+              options: {
+                min: 0,
+                max: 5,
+                range: 'min'
+              }
+          }
+        ]
       }
     ]
+  };
+
+  // this is a commen
+
+  $scope.fitlerPanel = {
+    events:{
+      execute: function(){
+        alert('executed');
+      },
+      save : function(){
+        alert('updated!');
+      }
+    }
   };
 
 

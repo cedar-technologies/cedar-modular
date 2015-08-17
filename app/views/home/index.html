@@ -3,23 +3,13 @@
 </div>
 
 
-<div class="container-fluid">
+<div class="container">
 
 
-  <pr-selector
+  <cd-filter-panel
     ng-hide="dialogIsHidden"
     selector-config="prSelectorDefinition"
-    on-save="save()"
-    on-execute="execute()">
-  </pr-selector>
-
-  <div class="row">
-    <div class="col-md-12">
-      {{message}}
-      <alert ng-repeat="alert in alerts" type="{{alert.type}}">{{alert.msg}}</alert>
-    </div>
-  </div>
-
-
+    events="fitlerPanel.events">
+  </cd-filter-panel>
 
 </div>

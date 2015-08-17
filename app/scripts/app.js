@@ -9,19 +9,9 @@
  * Main module of the application.
  */
 angular.module('cedarTechWebApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch',
-    'ui.router',
-    'ui.bootstrap',
-    'angular-loading-bar',
-    'eehNavigation',
-    'pascalprecht.translate',
-    'uiGmapgoogle-maps',
-    'qmfx.module'
+    'app.core',
+    'app.widget',
+    'app.qmfx'
   ]).config(function (
     $stateProvider,
     $urlRouterProvider,

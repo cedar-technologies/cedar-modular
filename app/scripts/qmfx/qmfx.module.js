@@ -2,5 +2,5 @@
     'use strict';
 
     angular
-        .module('qmfx.module', []);
+        .module('app.qmfx', []);
 })();
