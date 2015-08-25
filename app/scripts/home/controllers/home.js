@@ -7,12 +7,16 @@
  * # MainCtrl
  * Controller of the cedarTechWebApp
  */
-angular.module('cedarTechWebApp').controller('HomeCtrl', ['$scope', function ($scope) {
+angular.module('cedarTechWebApp').controller('HomeCtrl', ['$scope','$modal','$log', function ($scope, $modal, $log) {
 
   $scope.alerts = [
     { type: 'danger', msg: 'This page is under Construction' }
   ];
 
+  $scope.cdFitlerModel = {
+    firstTab: {
+    }
+  };
 
   $scope.prSelectorDefinition = {
     categories : [
@@ -71,14 +75,37 @@ angular.module('cedarTechWebApp').controller('HomeCtrl', ['$scope', function ($s
     }
   };
 
+  $scope.items = ['item1', 'item2', 'item3'];
 
-  $scope.execute = function(){
-    alert('executed');
-  }
+  $scope.open = function (size) {
+    var modalInstance;
+    var modalScope = $scope.$new();
+    modalScope.ok = function (selectedItem) {
+            modalInstance.close(selectedItem);
+    };
+    modalScope.cancel = function () {
+            modalInstance.dismiss('cancel');
+    };
 
+    modalScope.test = function (selectedItem) {
+      $scope.selected = selectedItem;
+    }
 
-  $scope.save = function(){
-    alert('updated!');
+    modalInstance = $modal.open({
+      template: '<cd-info-panel></cd-info-panel>',
+      size: size,
+      scope: modalScope,
+      animation: false,
+      backdrop: false
+      }
+    );
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
   };
+
 
 }]);

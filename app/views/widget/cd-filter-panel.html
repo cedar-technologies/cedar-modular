@@ -1,0 +1,23 @@
+<div>
+
+  <div class="row">
+
+    <tabset>
+      <tab ng-repeat="cat in selectorConfig.categories" heading="{{cat.title}}" active="cat.active">
+        {{cat.title}}
+      </tab>
+    </tabset>
+  </div>
+  <div class="row">
+
+    <button type="button" class="btn btn-info" ng-click="events.save()">
+    <i class="fa fa-floppy-o fa-lg"></i>
+    Save</button>
+
+    <button type="button" class="btn btn-success" ng-click="events.execute()">
+      <i class="fa fa-play-circle-o fa-lg"></i>
+      Run</button>
+
+      </div>
+
+</div>
