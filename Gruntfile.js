@@ -22,14 +22,15 @@ module.exports = function (grunt) {
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
-    dist: 'dist'
+    dist: 'dist',
+    docs: 'docs'
   };
 
   // Define the configuration for all the tasks
   grunt.initConfig({
 
     // Project settings
-    yeoman: appConfig,
+    cedar: appConfig,
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -38,7 +39,7 @@ module.exports = function (grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['<%= yeoman.app %>/scripts/**/*.js'],
+        files: ['<%= cedar.app %>/**/*.js'],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -49,11 +50,11 @@ module.exports = function (grunt) {
         tasks: ['newer:jshint:test', 'karma']
       },
       styles: {
-        files: ['<%= yeoman.app %>/styles/**/*.css'],
+        files: ['<%= cedar.app %>/styles/**/*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
       less: {
-    		files: ['<%= yeoman.app %>/styles/less/**/*.less'],
+    		files: ['<%= cedar.app %>/styles/less/**/*.less'],
     		tasks: ['less']
     	},
       gruntfile: {
@@ -64,9 +65,9 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= yeoman.app %>/**/*.html',
+          '<%= cedar.app %>/**/*.html',
           '.tmp/styles/**/*.css',
-          '<%= yeoman.app %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= cedar.app %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
     },
@@ -117,7 +118,7 @@ module.exports = function (grunt) {
       dist: {
         options: {
           open: true,
-          base: '<%= yeoman.dist %>'
+          base: '<%= cedar.dist %>'
         }
       }
     },
@@ -131,7 +132,7 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/**/*.js'
+          '<%= cedar.app %>/**/*.js'
         ]
       },
       test: {
@@ -149,13 +150,16 @@ module.exports = function (grunt) {
           dot: true,
           src: [
             '.tmp',
-            '<%= yeoman.dist %>/**/*',
-            '!<%= yeoman.dist %>/.git{,*/}*'
+            '<%= cedar.dist %>/**/*',
+            '!<%= cedar.dist %>/.git{,*/}*'
           ]
         }]
       },
-      server: '.tmp'
+      server: '.tmp',
+      docs: '<%= cedar.docs %>/**/*'
     },
+
+
 
     // Add vendor prefixed styles
     autoprefixer: {
@@ -186,7 +190,7 @@ module.exports = function (grunt) {
     // Automatically inject Bower components into the app
     wiredep: {
       app: {
-        src: ['<%= yeoman.app %>/index.html'],
+        src: ['<%= cedar.app %>/index.html'],
         ignorePath:  /\.\.\//
       },
       test: {
@@ -211,10 +215,10 @@ module.exports = function (grunt) {
     filerev: {
       dist: {
         src: [
-          '<%= yeoman.dist %>/scripts/**/*.js',
-          '<%= yeoman.dist %>/styles/**/*.css',
-          '<%= yeoman.dist %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= yeoman.dist %>/styles/fonts/*'
+          '<%= cedar.dist %>/scripts/**/*.js',
+          '<%= cedar.dist %>/styles/**/*.css',
+          '<%= cedar.dist %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= cedar.dist %>/styles/fonts/*'
         ]
       }
     },
@@ -223,9 +227,9 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: '<%= yeoman.app %>/index.html',
+      html: '<%= cedar.app %>/index.html',
       options: {
-        dest: '<%= yeoman.dist %>',
+        dest: '<%= cedar.dist %>',
         flow: {
           html: {
             steps: {
@@ -240,14 +244,14 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/**/*.html'],
-      css: ['<%= yeoman.dist %>/styles/**/*.css'],
-      js: ['<%= yeoman.dist %>/scripts/**/*.js'],
+      html: ['<%= cedar.dist %>/**/*.html'],
+      css: ['<%= cedar.dist %>/styles/**/*.css'],
+      js: ['<%= cedar.dist %>/scripts/**/*.js'],
       options: {
         assetsDirs: [
-          '<%= yeoman.dist %>',
-          '<%= yeoman.dist %>/images',
-          '<%= yeoman.dist %>/styles'
+          '<%= cedar.dist %>',
+          '<%= cedar.dist %>/images',
+          '<%= cedar.dist %>/styles'
         ],
         patterns: {
           js: [[/(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g, 'Replacing references to images']]
@@ -255,39 +259,15 @@ module.exports = function (grunt) {
       }
     },
 
-    // The following *-min tasks will produce minified files in the dist folder
-    // By default, your `index.html`'s <!-- Usemin block --> will take care of
-    // minification. These next options are pre-configured if you do not wish
-    // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
+
 
     imagemin: {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= yeoman.app %>/images',
+          cwd: '<%= cedar.app %>/images',
           src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%= yeoman.dist %>/images'
+          dest: '<%= cedar.dist %>/images'
         }]
       }
     },
@@ -296,9 +276,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= yeoman.app %>/images',
+          cwd: '<%= cedar.app %>/images',
           src: '{,*/}*.svg',
-          dest: '<%= yeoman.dist %>/images'
+          dest: '<%= cedar.dist %>/images'
         }]
       }
     },
@@ -313,9 +293,9 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= yeoman.dist %>',
+          cwd: '<%= cedar.dist %>',
           src: ['*.html'],
-          dest: '<%= yeoman.dist %>'
+          dest: '<%= cedar.dist %>'
         }]
       }
     },
@@ -327,7 +307,7 @@ module.exports = function (grunt) {
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
-        cwd: '<%= yeoman.app %>',
+        cwd: '<%= cedar.app %>',
         src: 'views/**/*.html',
         dest: '.tmp/templateCache.js'
       }
@@ -346,10 +326,22 @@ module.exports = function (grunt) {
       }
     },
 
+    // create documentation from ngdocs
+    ngdocs:{
+      all: {
+        dest: 'docs',
+        src: '<%= cedar.app %>/**/*.js',
+        html5Mode: true,
+        startPage: '/api',
+        title: "Cedar web app Docs",
+        titleLink: "/api",
+      }
+    },
+
     // Replace Google CDN references
     cdnify: {
       dist: {
-        html: ['<%= yeoman.dist %>/*.html']
+        html: ['<%= cedar.dist %>/*.html']
       }
     },
 
@@ -359,8 +351,8 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           dot: true,
-          cwd: '<%= yeoman.app %>',
-          dest: '<%= yeoman.dist %>',
+          cwd: '<%= cedar.app %>',
+          dest: '<%= cedar.dist %>',
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
@@ -371,23 +363,23 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           cwd: '.tmp/images',
-          dest: '<%= yeoman.dist %>/images',
+          dest: '<%= cedar.dist %>/images',
           src: ['generated/*']
         }, {
           expand: true,
           cwd: 'bower_components/bootstrap/dist',
           src: 'fonts/*',
-          dest: '<%= yeoman.dist %>'
+          dest: '<%= cedar.dist %>'
         }, {
           expand: true,
           cwd: 'bower_components/components-font-awesome',
           src: 'fonts/*',
-          dest: '<%= yeoman.dist %>'
+          dest: '<%= cedar.dist %>'
         }]
       },
       styles: {
         expand: true,
-        cwd: '<%= yeoman.app %>/styles',
+        cwd: '<%= cedar.app %>/styles',
         dest: '.tmp/styles/',
         src: '**/*.css'
       }
@@ -420,7 +412,7 @@ module.exports = function (grunt) {
     less: {
     	server: {
     		files: {
-    			"<%= yeoman.app %>/styles/cdstyle.css": "<%= yeoman.app %>/styles/less/*.less"
+    			"<%= cedar.app %>/styles/cdstyle.css": "<%= cedar.app %>/styles/less/*.less"
     		}
     	}
     },
@@ -428,9 +420,9 @@ module.exports = function (grunt) {
     cssUrlEmbed:{
       encode: {
         expand: true,
-        cwd: '<%= yeoman.app %>/styles',
+        cwd: '<%= cedar.app %>/styles',
         src: [ '**/*.css' ],
-        dest: '<%= yeoman.app %>/styles'
+        dest: '<%= cedar.app %>/styles'
       }
     }
 
@@ -495,4 +487,10 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.registerTask('document', [
+    'clean:docs',
+    'ngdocs:all'
+  ]);
+
 };
