@@ -1,1 +1,167 @@
 this is the test page
+
+
+<form class='form-horizontal' name="userForm" role='form' novalidate ng-submit="test.submitForm(userForm.$valid)">
+  <div class='form-group'>
+    <label class='control-label col-md-2 col-md-offset-2' for='id_title'>Name</label>
+    <div class='col-md-8'>
+      <div class='col-md-2'>
+        <div class='form-group internal'>
+          <select class='form-control' id='id_title' ng-model="test.stakeholder.title" required>
+            <option>Mr</option>
+            <option>Ms</option>
+            <option>Mrs</option>
+            <option>Miss</option>
+            <option>Dr</option>
+          </select>
+        </div>
+      </div>
+      <div class='col-md-2 indent-small'>
+        <div class='form-group internal'  ng-class="{ 'has-error' : userForm.firstName.$invalid && !userForm.firstName.$pristine }">
+          <input class='form-control' id='id_first_name' name="firstName" placeholder='First Name' type='text' ng-model="test.stakeholder.firstName" required>
+          <p ng-show="userForm.firstName.$invalid && !userForm.firstName.$pristine" class="help-block"><small><i  class="fa fa-exclamation-circle fa-fw"></i>First Name is required.</small></p>
+        </div>
+      </div>
+      <div class='col-md-2 indent-small'>
+        <div class='form-group internal'>
+          <input class='form-control' id='id_middle_name' placeholder='Middle Name' type='text' ng-model="test.stakeholder.middleName">
+        </div>
+      </div>
+      <div class='col-md-2 indent-small'>
+        <div class='form-group internal'  ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine }">
+          <input class='form-control' name="lastName" id='id_last_name' placeholder='Last Name' type='text' ng-model="test.stakeholder.lastName" required>
+          <p ng-show="userForm.lastName.$invalid && !userForm.lastName.$pristine" class="help-block"><small>Last Name is required.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='form-group'>
+    <div class='control-label col-md-2 col-md-offset-2' for='id_title'></div>
+    <div class='col-md-8'>
+      <div class='col-md-2'>
+        <div class='form-group internal'>
+          <input class='form-control' id='id_aka' placeholder='AKA' type='text'>
+        </div>
+      </div>
+      <div class='col-md-2 indent-small'>
+        <div class='form-group internal' ng-class="{ 'has-error' : userForm.type.$invalid && !userForm.type.$pristine }">
+          <input class='form-control' name="type" id='id_type' placeholder='Type' type='text' type='text' ng-model="test.stakeholder.type" required>
+          <p ng-show="userForm.type.$invalid && !userForm.type.$pristine" class="help-block"><small>Type is required.</small></p>
+        </div>
+      </div>
+      <div class='col-md-2 indent-small'>
+        <div class='form-group internal'  ng-class="{ 'has-error' : userForm.organization.$invalid && !userForm.organization.$pristine }">
+          <input name="organization" class='form-control' id='id_organization' placeholder='Organization' type='text' type='text' ng-model="test.stakeholder.organization" required>
+          <p ng-show="userForm.organization.$invalid && !userForm.organization.$pristine" class="help-block"><small>Organization is required.</small></p>
+        </div>
+      </div>
+      <div class='col-md-2 indent-small'>
+        <div class='form-group internal'  ng-class="{ 'has-error' : userForm.position.$invalid && !userForm.position.$pristine }">
+          <input name="position" class='form-control' id='id_position' placeholder='Position' type='text' type='text' ng-model="test.stakeholder.position" required>
+          <p ng-show="userForm.position.$invalid && !userForm.position.$pristine" class="help-block"><small>Position is required.</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='form-group'>
+    <label class='control-label col-md-2 col-md-offset-2' for='id_email'>Address</label>
+    <div class='col-md-6'>
+      <div class='form-group'>
+        <div class='col-md-11'>
+          <input class='form-control' id='id_address_1' placeholder='Address 1' type='text'>
+        </div>
+      </div>
+      <div class='form-group internal'>
+        <div class='col-md-11'>
+          <input class='form-control' id='id_address_2' placeholder='Address 2' type='text'>
+        </div>
+      </div>
+      <div class='form-group internal'>
+      </div>
+    </div>
+  </div>
+  <div class='form-group'>
+    <div class='control-label col-md-2 col-md-offset-2' for='id_title'></div>
+    <div class='col-md-8'>
+      <div class='col-md-2'>
+        <div class='form-group internal'>
+          <input class='form-control' id='id_city' placeholder='City' type='text'>
+        </div>
+      </div>
+      <div class='col-md-2 indent-small'>
+        <div class='form-group internal'>
+          <input class='form-control' id='id_country' placeholder='Country' type='text'>
+        </div>
+      </div>
+      <div class='col-md-2 indent-small'>
+        <div class='form-group internal'>
+          <input class='form-control' id='id_adminDivision' placeholder='Province/State' type='text'>
+        </div>
+      </div>
+      <div class='col-md-2 indent-small'>
+        <div class='form-group internal'>
+          <input class='form-control' id='id_ZipCode' placeholder='Zip/Postal Code' type='text'>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='form-group'>
+    <label class='control-label col-md-2 col-md-offset-2' for='id_email'>Contact</label>
+    <div class='col-md-6'>
+      <div class='form-group'>
+        <div class='col-md-11'  ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+          <input name="email" class='form-control' id='id_email' placeholder='E-mail' type='email' ng-model="test.stakeholder.email" required>
+          <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block"><small>Enter a valid email.</small></p>
+        </div>
+      </div>
+      <div class='form-group internal'>
+        <div class='col-md-12'>
+          <div class='col-md-5'>
+            <div class='form-group'>
+              <input class='form-control' id='id_PrincipalPhone' placeholder='Principal Phone' type='text'>
+            </div>
+          </div>
+          <div class='col-md-6 indent-small' >
+            <div class='form-group internal'>
+              <input class='form-control' id='id_SecondaryPhone' placeholder='Secondary Phone' type='text'>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='form-group'>
+    <div class='col-md-offset-4 col-md-3'>
+      <button class='btn-sm btn-primary' type='submit' ng-disabled="userForm.$invalid">Request Reservation</button>
+    </div>
+    <div class='col-md-3'>
+      <button class='btn-sm btn-danger'>Cancel</button>
+    </div>
+  </div>
+</form>
+<pre>
+  {{test.stakeholder | json: 2}}
+</pre>
+
+<div class="container-fluid">
+  <div class="col-md-4">
+    <div class="info-box bg-red">
+      <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Likes</span>
+        <span class="info-box-number">41,410</span>
+        <!-- The progress section is optional -->
+        <div class="progress">
+          <div class="progress-bar" ng-style="{'width':total + '%'}"></div>
+        </div>
+        <span class="progress-description">
+          {{total}}% Increase in 30 Days {{incremental}}
+        </span>
+      </div><!-- /.info-box-content -->
+    </div><!-- /.info-box -->
+  </div>
+</div>
+
+<button class="btn btn-success" ng-click="fight()"><i class="fa fa-play fa-fw"></i>Start</button>
+<button class="btn btn-success" ng-click="stopFight()"><i class="fa fa-stop fa-fw"></i>Stop</button>
+<button class="btn btn-success" ng-click="defight()"><i class="fa fa-backward fa-fw"></i>Rewind</button>

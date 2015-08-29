@@ -11,7 +11,8 @@
 angular.module('cedarTechWebApp', [
     'cedarApp.core',
     'app.widget',
-    'app.qmfx'
+    'app.qmfx',
+    'cedarApp.test'
   ]).constant('myConfig',{
     'backend': 'http://ec2-52-25-100-45.us-west-2.compute.amazonaws.com:8080/api/'
   });

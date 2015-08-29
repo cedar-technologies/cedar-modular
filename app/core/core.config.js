@@ -61,6 +61,15 @@
             controller: 'ContactCtrl'
           }
         }
+      }).state('test', {
+        url: "/test",
+        views: {
+          "mainView": {
+            templateUrl: 'components/test/test.html',
+            controller: 'TestController',
+            controllerAs: 'test'
+          }
+        }
       });
 
       eehNavigationProvider.iconBaseClass('fa');

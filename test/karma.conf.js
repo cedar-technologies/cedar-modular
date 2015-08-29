@@ -41,6 +41,9 @@ module.exports = function(config) {
       'bower_components/angular-esri-map/dist/angular-esri-map.js',
       'bower_components/jquery-ui/ui/jquery-ui.js',
       'bower_components/angular-ui-slider/src/slider.js',
+      'bower_components/emitter-es6/browser/index.js',
+      'bower_components/slideout.js/dist/slideout.js',
+      'bower_components/admin-lte/dist/js/app.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

@@ -7,7 +7,7 @@
     'use strict';
 
     angular
-        .module('appCedar.test', [
+        .module('cedarApp.test', [
 
         ]);
 })();
