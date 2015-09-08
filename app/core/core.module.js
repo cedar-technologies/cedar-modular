@@ -23,7 +23,7 @@
     'use strict';
 
     angular
-        .module('cedarApp.core', [
+        .module('stakeholder.core', [
             /*
             * Angular Modules
             */
@@ -44,7 +44,6 @@
             'ui.router',
             'ui.bootstrap',
             'angular-loading-bar',
-            'eehNavigation',
             'pascalprecht.translate',
             'uiGmapgoogle-maps',
             'ui.slider'
